@@ -1,0 +1,62 @@
+{% extends 'portfolio/layout.html' %}
+
+{% block content %}
+
+
+{% load static %}
+<header class='row bg-black'>
+    <div class='col-md-4'>
+        <img class='imagen' src="{% static 'portfolio/perfil.jpg' %}" alt="">
+    </div>
+
+    <div class='col-md-8 my-auto'>
+        <h1>I am <strong>Jesus Armando</strong></h1>
+        <h3>Desarrollador backend Jr.</h3>
+        <p>Apasionado del campo de la programación, con gran interés en acceder al mercado laboral para aplicar de una
+            manera práctica mis conocimientos. En busca de una oportunidad para adquirir experiencia profesional en el
+            campo de desarrollo web ofreciendo una excelente capacidad de adaptación a entornos cambiantes y con nuevos
+            desafíos.
+            En los link de abajo podran ver los proyectos que he realizado para obtener experiencia tambien podran
+            obtener mi CV en el boton de aqui abajo
+        </p>
+        <a href="{% static 'portfolio/Resumen_profesional.pdf' %}" class="btn btn-primary rounded-0 my-3 btn-lg"
+            target='_blank'>Download CV</a>
+    </div>
+
+</header>
+
+<hr>
+
+
+<div class="row my-4 text-center">
+
+    <h3>My projects</h3>
+
+    {% for projecto in project  %}
+    <br>
+
+
+    <div class="col-md-4 p-4">
+        <div class="card bg-black card-project">
+            <div class="card-body">
+                <a href="{% url 'blog:posts' %}" class='text-secondary text-decoration-none'>
+                    <img src="{{projecto.image.url}}" alt="{{projecto.title}}" class='card-img-top'>
+                    <h2>{{projecto.title}}</h2>
+
+                    <p>{{projecto.description}}</p>
+
+                    {%if projecto.url%}
+                    <a class='btn btn-light rounded-0 btn-sm' target='_blanck'
+                        href="{{projecto.url}}">{{projecto.url}}</a>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    {% endif %}
+    {% endfor %}
+</div>
+
+
+{% endblock  %}
